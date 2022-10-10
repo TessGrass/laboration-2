@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "npx eslint ./src || exit 0",
+    "lint": "npx eslint ./app/src || exit 0",
     "lint:fix": "npx eslint ./src --fix || exit 0"
   },
   "repository": {

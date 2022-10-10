@@ -4,13 +4,13 @@ template.innerHTML = `
 <style>
 
 .mainwrapper {
-  background-color: green;
-  display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-	align-content: stretch;
+background-color: green;
+display: flex;
+flex-direction: column;
+flex-wrap: nowrap;
+justify-content: center;
+align-items: center;
+align-content: stretch;
 }
 
 p {
@@ -21,7 +21,7 @@ p {
 }
 
 .chart-wrapper {
-  background-color: blue;
+  background-color: white;
   width: 70vw;
   height: 70vh;
  }
@@ -74,14 +74,18 @@ customElements.define('desktop-main',
       this.headlineText = this.shadowRoot.querySelector('p')
       this.ctx = this.shadowRoot.querySelector('#myChart')
       this.headlineText.textContent = 'ELECTRICITY PRICE'
+      this.fetchHourlyPrices()
 
-      this.fetchPricesButton.addEventListener('click', (event) => {
-        this.fetchHourlyPrices()
+/*       this.fetchPricesButton.addEventListener('click', (event) => {
         event.stopPropagation()
-      })
+      }) */
     }
-    
-    fetchHourlyPrices() {
-      console.log("in here")      
+
+    /**
+     * 
+     */
+    fetchHourlyPrices () {
+      const chartComponent = document.createElement('chart-component')
+      this.chartWrapper.appendChild(chartComponent)
     }
   })
