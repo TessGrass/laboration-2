@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/TessGrass/laboration-2/issues"
   },
-  "homepage": "https://github.com/TessGrass/laboration-2#readme"
+  "homepage": "https://github.com/TessGrass/laboration-2#readme",
+  "dependencies": {
+    "chart.js": "^3.9.1"
+  }
 }
