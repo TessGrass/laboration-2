@@ -1,4 +1,5 @@
 import Chart from 'chart.js/auto'
+import { ApiController } from '../../ApiController/api'
 
 const template = document.createElement('template')
 template.innerHTML = `
@@ -76,30 +77,48 @@ customElements.define('chart-component',
       this.chartWrapper = this.shadowRoot.querySelector('.chart-wrapper')
       this.ctx = this.shadowRoot.querySelector('#myChart')
       this.biddingZoneBtn = this.shadowRoot.querySelector('input')
-      this.chartInput = this.shadowRoot.querySelector('select')
+      this.biddingZoneDropDown = this.shadowRoot.querySelector('select')
       this.biddingZone = 'Not Yet Selected'
-      this.renderChartForBiddingZone()
+      this.apiController = new ApiController()
 
       this.biddingZoneBtn.addEventListener('click', (event) => {
-        this.biddingZone = this.chartInput.value
+        this.biddingZone = this.biddingZoneDropDown.value
         this.destroyChart()
-        this.renderChartForBiddingZone()
+        this.getHoursPricesBiddingZone(this.biddingZone)
         event.preventDefault()
       })
     }
 
     /**
+     * Fetches the hourly prices for a specific zone-
+     * @param {string} zone 
+     */
+    async getHoursPricesBiddingZone(zone) {
+      const startTime = []
+      const pricePerKwh = []
+      const hourlyPricesBiddingZone = await this.apiController.getHourlyPricesForOneBiddingZone(zone)
+
+      for (const value of Object.values(hourlyPricesBiddingZone)) {
+              startTime.push(value.startTime)
+              pricePerKwh.push(value.pricePerKwh)
+      }
+      this.renderChartForBiddingZone(startTime, pricePerKwh)
+    }
+
+    /**
      * Renders the chart for the selected bidding zone.
      */
-    renderChartForBiddingZone () {
+    renderChartForBiddingZone (start, price) {
+      const startTime = start
+      const pricePerKwh = price
+
       this.myChart = new Chart(this.ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
-          labels: ['00-01', '01-02', '02-03', '03-04', '04-05', '05-06', '06-07', '07-08', '08-09', '09-10', '10-11', '11-12',
-            '12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19', '19-20', '20-21', '21-22', '22-23', '23-00'],
+          labels: startTime,
           datasets: [{
             label: `Bidding Zone: ${this.biddingZone}`,
-            data: [this.hour0001, 5, 35, 3, 5, 2, 3, 19, 3, 5, 2, 3, 19, 3, 5, 2, 3, 19, 3, 5, 2, 3, 19, 15],
+            data: pricePerKwh,
             backgroundColor: [
               'rgba(255, 99, 132)',
               'rgba(54, 162, 235)',
@@ -124,6 +143,8 @@ customElements.define('chart-component',
      * Destroys the current chart so that a new chart can be rendered.
      */
     destroyChart () {
+      if(this.myChart != undefined) {
       this.myChart.destroy()
+      }
     }
   })
