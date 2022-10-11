@@ -1,32 +1,27 @@
 import Chart from 'chart.js/auto'
-import { ApiController } from '../../ApiController/api'
+import { ApiController } from '../../controller/apiController/apiController'
 
 const template = document.createElement('template')
 template.innerHTML = `
 <style>
 
 .chart-wrapper {
-  max-width: 60vw;
+  padding: 40px;
  }
 
  .form-wrapper {
-  display: flex;
+  background-color: #ededed;
+  border-radius: 15px;
+  width: 200px;
+  margin: auto;
+
+  padding: 20px;
+  text-align: center;
  }
  
- form {
-display: flex;
-flex-direction: column;
-flex-wrap: nowrap;
-justify-content: center;
-align-items: center;
-align-content: stretch;
-background-color: yellow;
-width: 25vh;
-margin: 0;
- }
-
  label {
   width: 150px;
+  font-size: 15px;
   margin: 0;
  }
 
@@ -35,10 +30,15 @@ margin: 0;
   margin: 0;
 }
 
- 
  #chart-button {
   width: 65px;
   height: 25px;
+ }
+
+ canvas {
+  width: 100%;
+  height: 100%;
+  margin: auto;
  }
 
 </style>
@@ -74,12 +74,12 @@ customElements.define('chart-component',
 
       this.attachShadow({ mode: 'open' })
         .appendChild(template.content.cloneNode(true))
+      this.apiController = new ApiController()
       this.chartWrapper = this.shadowRoot.querySelector('.chart-wrapper')
       this.ctx = this.shadowRoot.querySelector('#myChart')
       this.biddingZoneBtn = this.shadowRoot.querySelector('input')
       this.biddingZoneDropDown = this.shadowRoot.querySelector('select')
       this.biddingZone = 'Not Yet Selected'
-      this.apiController = new ApiController()
 
       this.biddingZoneBtn.addEventListener('click', (event) => {
         this.biddingZone = this.biddingZoneDropDown.value

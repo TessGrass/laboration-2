@@ -1,4 +1,4 @@
-import { ElectricityRatesProvider } from '../../../energy-price-module/src/index'
+import { ElectricityRatesProvider } from '../../../../energy-price-module/src/index'
 
 export class ApiController {
   constructor () {
@@ -39,7 +39,4 @@ export class ApiController {
   async getHourlyPricesForOneBiddingZone(zone) {
     return await this.electricityRatesProvider.getHourlyPricesForOneBiddingZone(zone)
   }
-
-
-
 }

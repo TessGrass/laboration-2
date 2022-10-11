@@ -4,32 +4,42 @@ template.innerHTML = `
 <style>
 
 .mainwrapper {
-background-color: green;
-display: flex;
-flex-direction: column;
-flex-wrap: nowrap;
-justify-content: center;
-align-items: center;
-align-content: stretch;
+  background-color: #ededed;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
 }
 
-p {
+.title {
   font-size: 70px;
   margin-top: 60px;
+  margin-bottom: 0;
   padding: 0;
   display: inline;
+}
+
+.subtitle {
+  font-size: 20px;
+  margin-top: -20px;
+  margin-bottom: 30px;
+
 }
 
 .chart-wrapper {
   background-color: white;
   width: 70vw;
   height: 70vh;
- }
+  margin-bottom: 15px;
+}
 
- .converter-wrapper {
-  background-color: red;
+.converter-wrapper {
+  background-color: white;
   width: 70vw;
   height: 70vh;
+  margin-bottom: 15px;
  }
 
  .footer-wrapper {
@@ -37,22 +47,32 @@ p {
  }
 
  .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 99vw;
-  height: 10vh;
+  height: 7vh;
   background-color: rgba(200,200,200);
+}
+
+.nav-box {
+  background-color: yellow;
+  width: 11vw;
+  height: 5vh;
+  border-radius: 15px;
 }
 
 </style>
 <div class="mainwrapper">
-      <p></p>
-    <div class="chart-wrapper">
-    </div>
-    <div class="converter-wrapper">
-    </div>
-    <div class="footer-wrapper">
+    <h1 class="title">SPOT PRICE GRABBER</h1>
+    <p class="subtitle">Get day-ahead hourly prices for Swedens all four bidding zones</p>
+    <div class="chart-wrapper"><chart-component></chart-component></div>
+    <div class="converter-wrapper"><watt-converter></watt-converter></div>
+  <div class="footer-wrapper">
     <div class="footer">
-      </div>
+      <button class="nav-box"></button>
     </div>
+   </div>
 </div>
   `
 customElements.define('desktop-main',
@@ -72,20 +92,22 @@ customElements.define('desktop-main',
       this.chartWrapper = this.shadowRoot.querySelector('.chart-wrapper')
       this.fetchPricesButton = this.shadowRoot.querySelector('.button')
       this.headlineText = this.shadowRoot.querySelector('p')
+      this.navBox = this.shadowRoot.querySelector('.nav-box')
+      this.converterWrapper = this.shadowRoot.querySelector('.converter-wrapper')
       this.ctx = this.shadowRoot.querySelector('#myChart')
-      this.headlineText.textContent = 'ELECTRICITY PRICE'
-      this.fetchHourlyPrices()
+/*       this.fetchHourlyPrices() */
 
-/*       this.fetchPricesButton.addEventListener('click', (event) => {
-        event.stopPropagation()
-      }) */
+      this.navBox.addEventListener('click', (event) => {
+        this.chartWrapper.style.display = 'none'
+        this.converterWrapper.style.display = 'block'
+      })
     }
 
     /**
      * 
      */
-    fetchHourlyPrices () {
+/*     fetchHourlyPrices () {
       const chartComponent = document.createElement('chart-component')
       this.chartWrapper.appendChild(chartComponent)
-    }
+    } */
   })

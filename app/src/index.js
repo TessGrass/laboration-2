@@ -7,3 +7,4 @@
 
 import './components/desktop-main/'
 import './components/chart/'
+import './components/watt-converter/'
