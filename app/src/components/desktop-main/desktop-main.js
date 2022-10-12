@@ -14,7 +14,7 @@ template.innerHTML = `
 }
 
 .title {
-  font-size: 70px;
+  font-size: 85px;
   margin-top: 60px;
   margin-bottom: 0;
   padding: 0;
@@ -22,10 +22,14 @@ template.innerHTML = `
 }
 
 .subtitle {
-  font-size: 20px;
+  font-size: 24px;
   margin-top: -20px;
-  margin-bottom: 30px;
+}
 
+#subtitle-important {
+  font-size: 12px;
+  margin-top: -20px;
+  margin-bottom: 35px;
 }
 
 .chart-wrapper {
@@ -66,6 +70,7 @@ template.innerHTML = `
 <div class="mainwrapper">
     <h1 class="title">SPOT PRICE GRABBER</h1>
     <p class="subtitle">Get day-ahead hourly prices for Swedens all four bidding zones</p>
+    <p class="subtitle" id="subtitle-important">The prices does not include the cost of electricity certificates, surcharges, energy tax, VAT and electricity grid costs.</p>
     <div class="chart-wrapper"><chart-component></chart-component></div>
     <div class="converter-wrapper"><watt-converter></watt-converter></div>
   <div class="footer-wrapper">
@@ -79,7 +84,8 @@ customElements.define('desktop-main',
    * Creates a desktop component.
    */
   class extends HTMLElement {
-  /**
+  
+    /**
    * Creates a instance of the current type.
    */
     constructor () {
@@ -95,12 +101,4 @@ customElements.define('desktop-main',
       this.converterWrapper = this.shadowRoot.querySelector('.converter-wrapper')
       this.ctx = this.shadowRoot.querySelector('#myChart')
     }
-
-    /**
-     * 
-     */
-/*     fetchHourlyPrices () {
-      const chartComponent = document.createElement('chart-component')
-      this.chartWrapper.appendChild(chartComponent)
-    } */
   })

@@ -177,10 +177,10 @@ customElements.define('chart-component',
         data: {
           labels: startTime,
           datasets: [{
-            label: `Price per kwh > 150. Zone: ${this.biddingZone}`,
+            label: `Price per kwh < 150 pennies. Zone: ${this.biddingZone}`,
             data: pricePerKwh,
             backgroundColor: color => {
-              const colors = color.raw > 150 ? 'rgba(255, 123, 123)' : 'rgba(127, 191, 127)'
+              const colors = color.raw < 150 ? 'rgba(127, 191, 127)': 'rgba(255, 123, 123)'
               return colors
            }         
             }]
