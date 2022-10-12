@@ -49,20 +49,21 @@ template.innerHTML = `
 
  #title {
   margin: 0;
-  margin-bottom: -10px;
-  font-size: 16px;
+  font-size: 18px;
  }
 
  #subtitle {
   margin: 0;
   margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 14px;
  }
  
  a {
+  display: inline-block;
   color: #e95050;
   font-size: 12px;
-  margin-top: -5px;
+  margin-top: -15px;
+  margin-bottom: 10px;
  }
 
 </style>
@@ -81,7 +82,7 @@ template.innerHTML = `
       <option value="SE3">SE3</option>
       <option value="SE4">SE4</option>
     </select>
-    <input id="chart-input" type="submit" value="Send">
+    <input id="chart-input" type="submit" value="Display">
     </form>
 </div>
     <div class="form-wrapper">
@@ -97,7 +98,7 @@ template.innerHTML = `
       <option value="SE3">SE3</option>
       <option value="SE4">SE4</option>
     </select>
-    <button type="number" id="propane-price" class="submit">Send</button>
+    <button type="number" id="propane-price" class="submit">Display</button>
   </form>
 </div>
 
@@ -120,19 +121,26 @@ customElements.define('chart-component',
       this.chartWrapper = this.shadowRoot.querySelector('.chart-wrapper')
       this.ctx = this.shadowRoot.querySelector('#myChart')
       this.biddingZoneBtn = this.shadowRoot.querySelector('input')
-      this.propaneCheaperBtn = this.shadowRoot.querySelector('#propane-price')
-      this.biddingZoneDropDown = this.shadowRoot.querySelector('select')
+      this.propaneCheaperBtn = this.shadowRoot.querySelector('#form-propane-cheaper')
+      this.selectedBiddingZone = this.shadowRoot.querySelector('select')
       this.biddingZone = 'Not Yet Selected'
+      this.isChartForPropaneHours;
       
       this.biddingZoneBtn.addEventListener('click', (event) => {
-        this.biddingZone = this.biddingZoneDropDown.value
-        this.destroyChart()
-        this.getHoursPricesBiddingZone(this.biddingZone)
         event.preventDefault()
+        this.destroyChart()
+        this.isChartForPropaneHours = false
+        this.biddingZone = this.selectedBiddingZone.value
+        this.renderChartForView()
       })
 
-      this.propaneCheaperBtn.addEventListener('click', (event) => {
-          apiController
+      this.propaneCheaperBtn.addEventListener('submit', (event) => {
+        event.preventDefault()
+        this.destroyChart()
+        this.isChartForPropaneHours = true
+        const propanePerKwh = parseInt(event.target[0].value)
+        this.biddingZone = event.target[1].value
+        this.renderChartForView(propanePerKwh)
       })
     }
 
@@ -140,34 +148,37 @@ customElements.define('chart-component',
      * Fetches the hourly prices for a specific zone-
      * @param {string} zone 
      */
-    async getHoursPricesBiddingZone(zone) {
-      const startTime = []
-      const pricePerKwh = []
-      const hourlyPricesBiddingZone = await this.apiController.getHourlyPricesForOneBiddingZone(zone)
-
-      for (const value of Object.values(hourlyPricesBiddingZone)) {
-            startTime.push(value.startTime)
-            pricePerKwh.push(value.pricePerKwh)
-      }
-      this.renderChartForBiddingZone(startTime, pricePerKwh)
+    async getHourlyPricesBiddingZone (zone) {
+      return await this.apiController.getHourlyPricesForOneBiddingZone(this.biddingZone)
     }
 
-    /**
-     * Renders the chart for the selected bidding zone.
-     */
-    renderChartForBiddingZone (start, price) {
-      const startTime = start
-      const pricePerKwh = price
+    async getHoursCheaperPropane (pennies) {
+      return await this.apiController.getCheaperHoursToUsePropane(pennies, this.biddingZone)
+    }
+
+    async renderChartForView (propane) {
+      let dayAheadPrices = []
+      const isTypeOfChartPropaneHours = this.typeOfChart()
+
+     if (isTypeOfChartPropaneHours) {
+      dayAheadPrices = await this.getHoursCheaperPropane(propane)
+     } else {
+      dayAheadPrices = await this.getHourlyPricesBiddingZone()
+     }
+     console.log(dayAheadPrices);
+      const startTime = this.extractStartTime(dayAheadPrices)
+      const pricePerKwh = this.extractKwhPrices(dayAheadPrices)
+
       const testpricePerKwh = [210, 20, 50, 40, 150 ,20, 190]
       const teststartTime = [12, 13, 14, 15, 16, 17, 18]
-
+  
       this.myChart = new Chart(this.ctx, {
         type: 'bar',
         data: {
-          labels: teststartTime,
+          labels: startTime,
           datasets: [{
             label: `Price per kwh > 150. Zone: ${this.biddingZone}`,
-            data: testpricePerKwh,
+            data: pricePerKwh,
             backgroundColor: color => {
               const colors = color.raw > 150 ? 'rgba(255, 123, 123)' : 'rgba(127, 191, 127)'
               return colors
@@ -187,6 +198,29 @@ customElements.define('chart-component',
       })
     }
 
+        /**
+     * Renders the chart for the selected bidding zone.
+     */
+    extractStartTime (dayAheadPrices) {
+      const startTime = []
+      for (const value of Object.values(dayAheadPrices)) {
+        startTime.push(value.startTime)
+      }
+      return startTime
+    }
+
+    extractKwhPrices (dayAheadPrices) {
+      const pricePerKwh = []
+      for (const value of Object.values(dayAheadPrices)) {
+        pricePerKwh.push(value.pricePerKwh)
+      }
+      return pricePerKwh
+    }
+
+    typeOfChart () {
+      return this.isChartForPropaneHours ? true : false
+    }
+    
     /**
      * Destroys the current chart so that a new chart can be rendered.
      */

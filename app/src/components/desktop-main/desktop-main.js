@@ -94,12 +94,6 @@ customElements.define('desktop-main',
       this.navBox = this.shadowRoot.querySelector('.nav-box')
       this.converterWrapper = this.shadowRoot.querySelector('.converter-wrapper')
       this.ctx = this.shadowRoot.querySelector('#myChart')
-/*       this.fetchHourlyPrices() */
-
-      this.navBox.addEventListener('click', (event) => {
-        this.chartWrapper.style.display = 'none'
-        this.converterWrapper.style.display = 'block'
-      })
     }
 
     /**
