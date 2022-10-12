@@ -39,4 +39,8 @@ export class ApiController {
   async getHourlyPricesForOneBiddingZone(zone) {
     return await this.electricityRatesProvider.getHourlyPricesForOneBiddingZone(zone)
   }
+
+  async getHoursWhenPropaneIsCheaperToUse() {
+    return await this.ElectricityRatesProvider.getHoursWhenPropaneIsCheaperToUse(pennies, zone)
+  }
 }

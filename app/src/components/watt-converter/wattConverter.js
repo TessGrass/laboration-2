@@ -23,30 +23,16 @@ template.innerHTML = `
   color: white;
 }
 
-.form {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-	align-content: stretch;
-  background-color: #c6c6cc;
-  border-radius: 20px;
-  width: 19vw;
-  min-height: 15vh;
-  max-height: 32vh;
-  margin-bottom: 30px;
-  padding: 20px;
-}
 
 .subtitle {
-  color: white;
-  font-size: 18px;
+  color: black;
+  font-size: 20px;
+  text-align: center;
   margin: 0;
 }
 
 .instructions {
-  color: white;
+  color: black;
   font-size: 12px;
   margin: 0px;
   margin-bottom: 10px;
@@ -56,8 +42,7 @@ input {
   background-color: white;
   border-radius: 5px;
   margin-right: 10px;
-  margin-top: 4px;
-  margin-bottom: 45px;
+  margin-bottom: 10px;
   height: 35px;
   width: 13vw;
 }
@@ -69,7 +54,7 @@ input {
 }
 
 .submit {
-  background-color: #08d;
+  background-color: rgba(255, 159, 64);
   border-radius: 12px;
   border: 0;
   color: white;
@@ -85,23 +70,42 @@ input {
 
 .output-text {
   margin: 0;
-  color: white;
-  font-size: 28px;
+  color: black;
+  font-size: 20px;
+}
+
+.form-wrapper {
+  margin: auto;
+  width: 50%;
+  background-color: #ededed;
+  border-radius: 15px;
+  text-align: center;
+ width: 900px;
+  margin-bottom: 20px;
+
+  padding-top: 30px;
 }
 
 </style>
 <div class="converterwrapper">
 <p class="convert-title">Convert and Calculate</p>
+<div class="form-wrapper">
   <form id="form-watt-kilo">
-    <p class="subtitle">Convert Watt To Kilowatt</p>
+    <p class="subtitle">CONVERT WATT TO KILOWATT</p>
     <input type="number" class="watt-kilo" placeholder="Enter watt" required>
     <button type="number" id="watt-kilo" class="submit">convert</button>
   </form>
+  <p class="output-text"><p>
+</div>
+<div class="form-wrapper">
     <form id="form-kilo-mega">
-    <p class="subtitle">Convert Kilowatt to Megawatt</p>
+    <p class="subtitle">CONVERT KILOWATT TO MEGAWATT</p>
     <input type="number" class="kilo-mega" placeholder="Enter kilowatt" required>
     <button type="number" id="kilo-mega" class="submit">convert</button>
   </form>
+  <p class="output-text"><p>
+</div>
+<div class="form-wrapper">
   <form id="form-calculate-per-day">
     <p class="subtitle">Calculate Consumtion Cost Per Day For a Device</p>
     <p class="instructions">Enter the device watt consumption, the pennies you pay for 1 kWh and hours the device is running per day.</p>
@@ -110,6 +114,8 @@ input {
     <input type="number" class="kilo-mega" placeholder="Enter hours running per day" required>
     <button type="number" id="calculate" class="submit">convert</button>
   </form>
+</div>
+<div class="form-wrapper">
   <form id="form-calculate-propane-kilo">
   <p class="subtitle">Calculate Propane Kilowatt Price</p>
   <p class="instructions">Enter the price you payed for your propane and the weight of the propane</p>
@@ -117,7 +123,7 @@ input {
   <input type="number" class="kilo-mega" placeholder="Enter kilogram" required>
   <button type="number" id="calculate-propane" class="submit">convert</button>
 </form>
-<p class="output-text"><p>
+</div>
 </div>
   `
 customElements.define('watt-converter',
@@ -169,7 +175,6 @@ customElements.define('watt-converter',
     }
     
     printCostOfDeviceUserView(deviceCostPerDay) {
-      console.log(deviceCostPerDay);
       this.outputText.innerText = 'The daily cost of running the device is ' + deviceCostPerDay + ' pennies'
     }
   })

@@ -31,14 +31,14 @@ template.innerHTML = `
 .chart-wrapper {
   background-color: white;
   width: 70vw;
-  height: 70vh;
+  max-height: 90vh;
   margin-bottom: 15px;
 }
 
 .converter-wrapper {
   background-color: white;
   width: 70vw;
-  height: 70vh;
+  height: 100vh;
   margin-bottom: 15px;
  }
 
@@ -70,7 +70,6 @@ template.innerHTML = `
     <div class="converter-wrapper"><watt-converter></watt-converter></div>
   <div class="footer-wrapper">
     <div class="footer">
-      <button class="nav-box"></button>
     </div>
    </div>
 </div>
