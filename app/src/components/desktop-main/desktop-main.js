@@ -90,7 +90,7 @@ customElements.define('desktop-main',
    */
     constructor () {
       super()
-
+    
       this.attachShadow({ mode: 'open' })
         .appendChild(template.content.cloneNode(true))
       this.mainWrapper = this.shadowRoot.querySelector('.mainwrapper')

@@ -1,5 +1,5 @@
 import Chart from 'chart.js/auto'
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import ChartDataLabels from 'chartjs-plugin-datalabels'
 import { ApiController } from '../../controller/apiController/apiController'
 
 const template = document.createElement('template')
@@ -124,8 +124,8 @@ customElements.define('chart-component',
       this.propaneCheaperBtn = this.shadowRoot.querySelector('#form-propane-cheaper')
       this.selectedBiddingZone = this.shadowRoot.querySelector('select')
       this.biddingZone = 'Not Yet Selected'
-      this.isChartForPropaneHours;
-      
+      this.isChartForPropaneHours = false
+
       this.biddingZoneBtn.addEventListener('click', (event) => {
         event.preventDefault()
         this.destroyChart()
@@ -144,11 +144,7 @@ customElements.define('chart-component',
       })
     }
 
-    /**
-     * Fetches the hourly prices for a specific zone-
-     * @param {string} zone 
-     */
-    async getHourlyPricesBiddingZone (zone) {
+    async getHourlyPricesBiddingZone () {
       return await this.apiController.getHourlyPricesForOneBiddingZone(this.biddingZone)
     }
 
@@ -156,22 +152,25 @@ customElements.define('chart-component',
       return await this.apiController.getCheaperHoursToUsePropane(pennies, this.biddingZone)
     }
 
+    /**
+     * Renders a chart to the users view.
+     *
+     * @param {number} propane  - The ppropane kWh price.
+     */
     async renderChartForView (propane) {
       let dayAheadPrices = []
-      const isTypeOfChartPropaneHours = this.typeOfChart()
 
-     if (isTypeOfChartPropaneHours) {
-      dayAheadPrices = await this.getHoursCheaperPropane(propane)
-     } else {
-      dayAheadPrices = await this.getHourlyPricesBiddingZone()
-     }
-     console.log(dayAheadPrices);
+      if (this.isChartForPropaneHours) {
+        dayAheadPrices = await this.getHoursCheaperPropane(propane)
+      } else {
+        dayAheadPrices = await this.getHourlyPricesBiddingZone()
+      }
       const startTime = this.extractStartTime(dayAheadPrices)
       const pricePerKwh = this.extractKwhPrices(dayAheadPrices)
-
-      const testpricePerKwh = [210, 20, 50, 40, 150 ,20, 190]
+      const test = false;
+      const testpricePerKwh = [210, 20, 50, 40, 150, 20, 190]
       const teststartTime = [12, 13, 14, 15, 16, 17, 18]
-  
+
       this.myChart = new Chart(this.ctx, {
         type: 'bar',
         data: {
@@ -179,13 +178,14 @@ customElements.define('chart-component',
           datasets: [{
             label: `Price per kwh < 150 pennies. Zone: ${this.biddingZone}`,
             data: pricePerKwh,
-            backgroundColor: color => {
-              const colors = color.raw < 150 ? 'rgba(127, 191, 127)': 'rgba(255, 123, 123)'
+            backgroundColor: test ? color => {
+               const colors = color.raw < 150 ? 'rgba(127, 191, 127)' : 'rgba(255, 123, 123)'
               return colors
-           }         
-            }]
+            } : color => { const colors = color.raw < 150 ? pattern.draw('square', '#ff6384') : pattern.draw('diamond', '#2ca02c') 
+                return colors }
+          }]
         },
-        plugins:  [ChartDataLabels],
+        plugins: [ChartDataLabels],
         options: {
           responsive: true,
           maintainAspectRatio: false,
@@ -198,8 +198,11 @@ customElements.define('chart-component',
       })
     }
 
-        /**
-     * Renders the chart for the selected bidding zone.
+    /**
+     * Extracts the starting time from the array.
+     *
+     * @param {Array} dayAheadPrices - The day ahead prices.
+     * @returns {Array} - An array of the starting times.
      */
     extractStartTime (dayAheadPrices) {
       const startTime = []
@@ -209,6 +212,12 @@ customElements.define('chart-component',
       return startTime
     }
 
+    /**
+     * Extracts the price per kilowatt.
+     *
+     * @param {Array} dayAheadPrices - The day ahead prices.
+     * @returns {Array} - The prices per kwh.
+     */
     extractKwhPrices (dayAheadPrices) {
       const pricePerKwh = []
       for (const value of Object.values(dayAheadPrices)) {
@@ -216,17 +225,13 @@ customElements.define('chart-component',
       }
       return pricePerKwh
     }
-
-    typeOfChart () {
-      return this.isChartForPropaneHours ? true : false
-    }
-    
+  
     /**
      * Destroys the current chart so that a new chart can be rendered.
      */
     destroyChart () {
-      if(this.myChart != undefined) {
-      this.myChart.destroy()
+      if (this.myChart !== undefined) {
+        this.myChart.destroy()
       }
     }
   })
