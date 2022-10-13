@@ -84,13 +84,12 @@ customElements.define('desktop-main',
    * Creates a desktop component.
    */
   class extends HTMLElement {
-  
     /**
-   * Creates a instance of the current type.
-   */
+     * Creates a instance of the current type.
+     */
     constructor () {
       super()
-    
+
       this.attachShadow({ mode: 'open' })
         .appendChild(template.content.cloneNode(true))
       this.mainWrapper = this.shadowRoot.querySelector('.mainwrapper')

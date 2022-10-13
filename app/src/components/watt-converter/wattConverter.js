@@ -44,7 +44,7 @@ input {
   margin-right: 10px;
   margin-bottom: 10px;
   height: 35px;
-  width: 13vw;
+  width: 10vw;
 }
 
 .placeholder {
@@ -72,6 +72,7 @@ input {
   margin: 0;
   color: black;
   font-size: 20px;
+  padding-bottom: 35px;
 }
 
 .form-wrapper {
@@ -82,47 +83,48 @@ input {
   text-align: center;
  width: 900px;
   margin-bottom: 20px;
-
   padding-top: 30px;
 }
 
 </style>
 <div class="converterwrapper">
-<p class="convert-title">Convert and Calculate</p>
+<p class="convert-title">Calculate</p>
 <div class="form-wrapper">
   <form id="form-watt-kilo">
-    <p class="subtitle">CONVERT WATT TO KILOWATT</p>
-    <input type="number" class="watt-kilo" placeholder="Enter watt" required>
-    <button type="number" id="watt-kilo" class="submit">convert</button>
+    <p class="subtitle">CALCULATE WATT TO KILOWATT</p>
+    <input type="number" class="watt-kilo" name="watt-input" placeholder="Enter watt" required>
+    <custom-button type="number" id="watt-kilo" class="submit">calculate</custom-button>
   </form>
-  <p class="output-text"><p>
+  <p class="output-text" id="output-text-watt-kilo"><p>
 </div>
 <div class="form-wrapper">
     <form id="form-kilo-mega">
-    <p class="subtitle">CONVERT KILOWATT TO MEGAWATT</p>
+    <p class="subtitle">CALCULATE KILOWATT TO MEGAWATT</p>
     <input type="number" class="kilo-mega" placeholder="Enter kilowatt" required>
-    <button type="number" id="kilo-mega" class="submit">convert</button>
+    <custom-button type="number" id="kilo-mega" class="submit">calculate</custom-button>
   </form>
-  <p class="output-text"><p>
+  <p class="output-text" id="output-text-kilo-watt"><p>
 </div>
 <div class="form-wrapper">
   <form id="form-calculate-per-day">
-    <p class="subtitle">Calculate Consumtion Cost Per Day For a Device</p>
+    <p class="subtitle">CALCULATE CONSUMPTION COST PER FOR A DEVICE</p>
     <p class="instructions">Enter the device watt consumption, the pennies you pay for 1 kWh and hours the device is running per day.</p>
-    <input type="number" class="kilo-mega" placeholder="Enter device watt" required>
-    <input type="number" class="kilo-mega" placeholder="Enter pennies per kWh" required>
-    <input type="number" class="kilo-mega" placeholder="Enter hours running per day" required>
-    <button type="number" id="calculate" class="submit">convert</button>
+    <input type="number" class="kilo-mega" id="calculate-device-watt" placeholder="Enter device watt" required>
+    <input type="number" class="kilo-mega" id="calculate-device-pennies" placeholder="Enter pennies per kWh" required>
+    <input type="number" class="kilo-mega" id="calculate-device-hours"  placeholder="Enter hours running per day" required>
+    <custom-button type="number" id="calculate" class="submit">calculate</custom-button>
   </form>
+  <p class="output-text" id="output-text-consumption"><p>
 </div>
 <div class="form-wrapper">
-  <form id="form-calculate-propane-kilo">
-  <p class="subtitle">Calculate Propane Kilowatt Price</p>
+  <form id="form-calculate-propane">
+  <p class="subtitle">CALCULATE PROPANE KWH PRICE</p>
   <p class="instructions">Enter the price you payed for your propane and the weight of the propane</p>
-  <input type="number" class="kilo-mega" placeholder="Enter price in crowns" required>
-  <input type="number" class="kilo-mega" placeholder="Enter kilogram" required>
-  <button type="number" id="calculate-propane" class="submit">convert</button>
+  <input type="number" class="kilo-mega" id="calculate-propane-crown" placeholder="Enter price in crowns" required>
+  <input type="number" class="kilo-mega" id="calculate-propane-kilogram" placeholder="Enter kilogram" required>
+  <custom-button type="number" id="calculate-propane" class="submit">calculate</custom-button>
 </form>
+<p class="output-text" id="output-text-propane"><p>
 </div>
 </div>
   `
@@ -141,40 +143,64 @@ customElements.define('watt-converter',
         .appendChild(template.content.cloneNode(true))
       this.converterController = new ConverterController()
       this.mainWrapper = this.shadowRoot.querySelector('.converterwrapper')
-      this.outputText = this.shadowRoot.querySelector('.output-text')
+      this.outputTextWattKilowatt = this.shadowRoot.querySelector('#output-text-watt-kilo')
+      this.outputTextKilowattToMegawatt = this.shadowRoot.querySelector('#output-text-kilo-watt')
+      this.outputTextConsumption = this.shadowRoot.querySelector('#output-text-consumption')
+      this.outputTextPropanePrice = this.shadowRoot.querySelector('#output-text-propane')
       this.formWattKilowatt = this.shadowRoot.querySelector('#form-watt-kilo')
       this.formKilowattMegawatt = this.shadowRoot.querySelector('#form-kilo-mega')
       this.formCalculatePerDay = this.shadowRoot.querySelector('#form-calculate-per-day')
+      this.formCalculatePropanePrice = this.shadowRoot.querySelector('#form-calculate-propane')
+      this.wattToKilowattBtn = this.shadowRoot.querySelector('#watt-kilo')
+      this.kiloWattToMegaWattBtn = this.shadowRoot.querySelector('#kilo-mega')
+      this.deviceConsumptionBtn = this.shadowRoot.querySelector('#calculate')
+      this.propaneKilowattBtn = this.shadowRoot.querySelector('#calculate-propane')
 
-      this.formWattKilowatt.addEventListener('submit', (event) => {
-        const watt = parseInt(event.target[0].value)
+      this.wattToKilowattBtn.addEventListener('click', (event) => {
+        const watt = Number(this.formWattKilowatt.querySelector('input').value)
+        event.preventDefault()
         const wattToKilowatt = this.converterController.convertWattToKilowatt(watt)
-        event.preventDefault()
-        this.printValueToUserView(wattToKilowatt)
+        this.printKilowattToUserView(wattToKilowatt)
       })
 
-      this.formKilowattMegawatt.addEventListener('submit', (event) => {
-        const kilowatt = parseInt(event.target[0].value)
+      this.kiloWattToMegaWattBtn.addEventListener('click', (event) => {
+        event.preventDefault()
+        const kilowatt = Number(this.formKilowattMegawatt.querySelector('input').value)
         const convertedKilowatt = this.converterController.convertKilowattToMegawatt(kilowatt)
-        event.preventDefault()
-        this.printValueToUserView(convertedKilowatt)
+        this.printMegawattToUserView(convertedKilowatt)
       })
 
-      this.formCalculatePerDay.addEventListener('submit', (event) => {
-        const deviceWatt = parseInt(event.target[0].value)
-        const penniesPerKwh = parseInt(event.target[1].value)
-        const hoursPerDay = parseInt(event.target[2].value)
-        const deviceCostPerDay = this.converterController.calculateDeviceCostPerDay(deviceWatt, penniesPerKwh, hoursPerDay)
+      this.deviceConsumptionBtn.addEventListener('click', (event) => {
         event.preventDefault()
+        const deviceWatt = Number(this.formCalculatePerDay.querySelector('input[id="calculate-device-watt"]').value)
+        const penniesPerKwh = Number(this.formCalculatePerDay.querySelector('input[id="calculate-device-pennies"]').value)
+        const hoursPerDay = Number(this.formCalculatePerDay.querySelector('input[id="calculate-device-hours"]').value)
+        const deviceCostPerDay = this.converterController.calculateDeviceCostPerDay(deviceWatt, penniesPerKwh, hoursPerDay)
         this.printCostOfDeviceUserView(deviceCostPerDay)
       })
+
+      this.propaneKilowattBtn.addEventListener('click', (event) => {
+        event.preventDefault()
+        const propanePrice = Number(this.formCalculatePropanePrice.querySelector('input[id="calculate-propane-crown"]').value)
+        const kilogram = Number(this.formCalculatePropanePrice.querySelector('input[id="calculate-propane-kilogram"]').value)
+        const propanePriceKwh = this.converterController.calculatePropaneKilowattPrice(propanePrice, kilogram)
+        this.printPropaneKwhPriceToUserView(propanePriceKwh)
+      })
     }
 
-    printValueToUserView(value) {
-      this.outputText.innerText = 'The converted value: ' + value
+    printKilowattToUserView (value) {
+      this.outputTextWattKilowatt.innerText = 'The Watt in Kilowatt: ' + value
     }
-    
-    printCostOfDeviceUserView(deviceCostPerDay) {
-      this.outputText.innerText = 'The daily cost of running the device is ' + deviceCostPerDay + ' pennies'
+
+    printMegawattToUserView (value) {
+      this.outputTextKilowattToMegawatt.innerText = 'The Kilowatt in Megawatt: ' + value
+    }
+
+    printCostOfDeviceUserView (deviceCostPerDay) {
+      this.outputTextConsumption.innerText = 'The daily cost of running the device is ' + deviceCostPerDay + ' pennies'
+    }
+
+    printPropaneKwhPriceToUserView (propanePriceKwh) {
+      this.outputTextPropanePrice.innerText = 'The cost of the propane is ' + propanePriceKwh + ' per kWh'
     }
   })
