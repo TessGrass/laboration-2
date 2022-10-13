@@ -1,5 +1,4 @@
 import Chart from 'chart.js/auto'
-import ChartDataLabels from 'chartjs-plugin-datalabels'
 import { ApiController } from '../../controller/apiController/apiController'
 
 const template = document.createElement('template')
@@ -98,8 +97,8 @@ template.innerHTML = `
     <div class="form-wrapper">
     <form id="form-propane-cheaper">
     <p id="title">DISPLAY HOURS WHEN PROPANE IS CHEAPER</p>
-    <p id="subtitle">Enter the kWh price, in pennies, for propane</p>
-    <label class="propane-price">price per kWh</label>
+    <p id="subtitle">Enter the kWh price, in Swedish ören, for propane</p>
+    <label class="propane-price">price per propane kWh</label>
     <input type="number" class="propane-price" placeholder="Enter price" required><br>
     <label for="bidding-zones">Select a zone:</label>
     <select name="bidding-zone" id="bidding-zones" required>
@@ -118,15 +117,16 @@ customElements.define('chart-component',
    * Creates a chart component.
    */
   class extends HTMLElement {
-  /**
-   * Creates a instance of the current type.
-   */
+    #apiController
+    /**
+     * Creates a instance of the current type.
+     */
     constructor () {
       super()
 
       this.attachShadow({ mode: 'open' })
         .appendChild(template.content.cloneNode(true))
-      this.apiController = new ApiController()
+      this.#apiController = new ApiController()
       this.chartWrapper = this.shadowRoot.querySelector('.chart-wrapper')
       this.ctx = this.shadowRoot.querySelector('#myChart')
       this.biddingZoneBtn = this.shadowRoot.querySelector('input')
@@ -159,7 +159,7 @@ customElements.define('chart-component',
      *
      * @param {number} propane - The ppropane kWh price.
      */
-      async renderChartForView (propane) {
+    async renderChartForView (propane) {
       let dayAheadPrices = []
 
       if (this.isChartForPropaneHours) {
@@ -180,10 +180,10 @@ customElements.define('chart-component',
         data: {
           labels: startTime,
           datasets: [{
-            label: isTomorrowsPrices ? `Price per kwh < 150 pennies. Zone: ${this.biddingZone}` : 'The day ahead prices are available from 1 p.m.',
+            label: isTomorrowsPrices ? `Price per kwh < 150 Swedish ören. Zone: ${this.biddingZone}` : 'The day ahead prices are available from 1 p.m.',
             data: pricePerKwh,
             backgroundColor: color => {
-              const colors = color.raw < 150 ? pattern.draw('square', 'rgba(127, 191, 127)') : pattern.draw('diagonal', 'rgba(255, 123, 123)')
+              const colors = color.raw > 150 ? pattern.draw('diagonal', 'rgba(255, 123, 123)') : pattern.draw('square', 'rgba(127, 191, 127)')
               return colors
             }
           }]
@@ -199,14 +199,14 @@ customElements.define('chart-component',
         }
       })
     }
-  
+
     /**
      * Fetches the dayahead prices for one bidding zone.
      *
      * @returns {Array} - The dayahead prices.
      */
-      async getHourlyPricesBiddingZone () {
-      return await this.apiController.getHourlyPricesForOneBiddingZone(this.biddingZone)
+    async getHourlyPricesBiddingZone () {
+      return await this.#apiController.getHourlyPricesForOneBiddingZone(this.biddingZone)
     }
 
     /**
@@ -216,9 +216,8 @@ customElements.define('chart-component',
      * @returns {Array} - Hours when propane is cheaper to use.
      */
     async getHoursCheaperPropane (crowns) {
-      return await this.apiController.getCheaperHoursToUsePropane(crowns, this.biddingZone)
+      return await this.#apiController.getHoursWhenPropaneIsCheaper(crowns, this.biddingZone)
     }
-
 
     /**
      * Extracts the starting time from the array.
@@ -240,7 +239,7 @@ customElements.define('chart-component',
      * @param {Array} dayAheadPrices - The day ahead prices.
      * @returns {Array} - The prices per kwh.
      */
-    
+
     #extractKwhPrices (dayAheadPrices) {
       const pricePerKwh = []
       for (const value of Object.values(dayAheadPrices)) {

@@ -108,10 +108,10 @@ input {
 <div class="form-wrapper">
   <form id="form-calculate-per-day">
     <p class="subtitle">CALCULATE CONSUMPTION COST PER FOR A DEVICE</p>
-    <p class="instructions">Enter the device watt consumption, the pennies you pay for 1 kWh and hours the device is running per day.</p>
-    <input type="number" class="kilo-mega" id="calculate-device-watt" placeholder="Enter device watt" required>
-    <input type="number" class="kilo-mega" id="calculate-device-pennies" placeholder="Enter pennies per kWh" required>
-    <input type="number" class="kilo-mega" id="calculate-device-hours"  placeholder="Enter hours running per day" required>
+    <p class="instructions">Enter the device watt consumption, cost for 1 kWh in Swedish ören and hours the device is running per day.</p>
+    <input type="number" class="kilo-mega" id="calculate-device-watt" placeholder="Device watt" required>
+    <input type="number" class="kilo-mega" id="calculate-device-pennies" placeholder="Swedish ören per kWh" required>
+    <input type="number" class="kilo-mega" id="calculate-device-hours"  placeholder="Hours running per day" required>
     <custom-button type="number" id="calculate" class="submit">calculate</custom-button>
   </form>
   <p class="output-text" id="output-text-consumption"><p>
@@ -120,8 +120,8 @@ input {
   <form id="form-calculate-propane">
   <p class="subtitle">CALCULATE PROPANE KWH PRICE</p>
   <p class="instructions">Enter the price you payed for your propane and the weight of the propane</p>
-  <input type="number" class="kilo-mega" id="calculate-propane-crown" placeholder="Enter price in crowns" required>
-  <input type="number" class="kilo-mega" id="calculate-propane-kilogram" placeholder="Enter kilogram" required>
+  <input type="number" class="kilo-mega" id="calculate-propane-crown" placeholder="Swedish crowns" required>
+  <input type="number" class="kilo-mega" id="calculate-propane-kilogram" placeholder="Kilogram" required>
   <custom-button type="number" id="calculate-propane" class="submit">calculate</custom-button>
 </form>
 <p class="output-text" id="output-text-propane"><p>
@@ -133,15 +133,16 @@ customElements.define('watt-converter',
    * Creates a desktop component.
    */
   class extends HTMLElement {
-  /**
-   * Creates a instance of the current type.
-   */
+    #converterController
+    /**
+     * Creates a instance of the current type.
+     */
     constructor () {
       super()
 
       this.attachShadow({ mode: 'open' })
         .appendChild(template.content.cloneNode(true))
-      this.converterController = new ConverterController()
+      this.#converterController = new ConverterController()
       this.mainWrapper = this.shadowRoot.querySelector('.converterwrapper')
       this.outputTextWattKilowatt = this.shadowRoot.querySelector('#output-text-watt-kilo')
       this.outputTextKilowattToMegawatt = this.shadowRoot.querySelector('#output-text-kilo-watt')
@@ -159,14 +160,14 @@ customElements.define('watt-converter',
       this.wattToKilowattBtn.addEventListener('click', (event) => {
         const watt = Number(this.formWattKilowatt.querySelector('input').value)
         event.preventDefault()
-        const wattToKilowatt = this.converterController.convertWattToKilowatt(watt)
+        const wattToKilowatt = this.#converterController.convertWattToKilowatt(watt)
         this.printKilowattToUserView(wattToKilowatt)
       })
 
       this.kiloWattToMegaWattBtn.addEventListener('click', (event) => {
         event.preventDefault()
         const kilowatt = Number(this.formKilowattMegawatt.querySelector('input').value)
-        const convertedKilowatt = this.converterController.convertKilowattToMegawatt(kilowatt)
+        const convertedKilowatt = this.#converterController.convertKilowattToMegawatt(kilowatt)
         this.printMegawattToUserView(convertedKilowatt)
       })
 
@@ -175,7 +176,7 @@ customElements.define('watt-converter',
         const deviceWatt = Number(this.formCalculatePerDay.querySelector('input[id="calculate-device-watt"]').value)
         const penniesPerKwh = Number(this.formCalculatePerDay.querySelector('input[id="calculate-device-pennies"]').value)
         const hoursPerDay = Number(this.formCalculatePerDay.querySelector('input[id="calculate-device-hours"]').value)
-        const deviceCostPerDay = this.converterController.calculateDeviceCostPerDay(deviceWatt, penniesPerKwh, hoursPerDay)
+        const deviceCostPerDay = this.#converterController.calculateDeviceCostPerDay(deviceWatt, penniesPerKwh, hoursPerDay)
         this.printCostOfDeviceUserView(deviceCostPerDay)
       })
 
@@ -183,7 +184,7 @@ customElements.define('watt-converter',
         event.preventDefault()
         const propanePrice = Number(this.formCalculatePropanePrice.querySelector('input[id="calculate-propane-crown"]').value)
         const kilogram = Number(this.formCalculatePropanePrice.querySelector('input[id="calculate-propane-kilogram"]').value)
-        const propanePriceKwh = this.converterController.calculatePropaneKilowattPrice(propanePrice, kilogram)
+        const propanePriceKwh = this.#converterController.calculatePropaneKilowattPrice(propanePrice, kilogram)
         this.printPropaneKwhPriceToUserView(propanePriceKwh)
       })
     }
@@ -197,10 +198,10 @@ customElements.define('watt-converter',
     }
 
     printCostOfDeviceUserView (deviceCostPerDay) {
-      this.outputTextConsumption.innerText = 'The daily cost of running the device is ' + deviceCostPerDay + ' pennies'
+      this.outputTextConsumption.innerText = 'The daily cost of running the device is ' + deviceCostPerDay + ' Swedish ören'
     }
 
     printPropaneKwhPriceToUserView (propanePriceKwh) {
-      this.outputTextPropanePrice.innerText = 'The cost of the propane is ' + propanePriceKwh + ' per kWh'
+      this.outputTextPropanePrice.innerText = 'The cost of the propane is ' + propanePriceKwh + ' Swedish ören per kWh'
     }
   })
