@@ -156,7 +156,7 @@ customElements.define('watt-converter',
       this.kiloWattToMegaWattBtn = this.shadowRoot.querySelector('#kilo-mega')
       this.deviceConsumptionBtn = this.shadowRoot.querySelector('#calculate')
       this.propaneKilowattBtn = this.shadowRoot.querySelector('#calculate-propane')
-
+      
       this.wattToKilowattBtn.addEventListener('click', (event) => {
         const watt = Number(this.formWattKilowatt.querySelector('input').value)
         event.preventDefault()

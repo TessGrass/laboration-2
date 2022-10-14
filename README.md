@@ -1,6 +1,6 @@
 # **SPOT PRICE GRABBER**
 
-This application is aimed at an end user who are interested in getting tomorrow's electricity prices, hour by hour, for Swedens bidding zones. The application is super easy to use and is designed with focus on clarity and accessibility.<br> Are you an developer and interested in how it works? Go to this [Repo](https://github.com/TessGrass/laboration-1.git) where you will find the module that this application is built upon. Feel free to try it by yourself.
+This application is aimed at an end user who are interested in getting tomorrow's electricity prices, hour by hour, for Swedens bidding zones. The application is super easy to use and is designed with focus on clarity and accessibility.<br> Are you an developer and interested in how it works? Go to this [Repo](https://github.com/TessGrass/laboration-1.git) where you will find the module that this application is built upon. Feel free to try it yourself.
 #### Important! The module does not include the cost of electricity certificates, surcharges, energy tax, VAT and electricity grid costs.
 <br>
 
