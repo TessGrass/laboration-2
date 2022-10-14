@@ -168,7 +168,7 @@ customElements.define('chart-component',
         dayAheadPrices = await this.getHourlyPricesBiddingZone()
       }
 
-      const isTomorrowsPrices = this.#checkIfTomorrowsPricesAreFetched(dayAheadPrices)
+      const isTomorrowsPricesAvailable = this.#checkIfTomorrowsPricesAreFetched(dayAheadPrices)
 
       const startTime = this.#extractStartTime(dayAheadPrices)
       const pricePerKwh = this.#extractKwhPrices(dayAheadPrices)
@@ -180,7 +180,7 @@ customElements.define('chart-component',
         data: {
           labels: startTime,
           datasets: [{
-            label: isTomorrowsPrices ? `Price per kwh < 150 Swedish ören. Zone: ${this.biddingZone}` : 'The day ahead prices are available from 1 p.m.',
+            label: isTomorrowsPricesAvailable ? `Price per kwh < 150 Swedish ören. Zone: ${this.biddingZone}` : 'The day ahead prices are available from 1 p.m.',
             data: pricePerKwh,
             backgroundColor: color => {
               const colors = color.raw > 150 ? pattern.draw('diagonal', 'rgba(255, 123, 123)') : pattern.draw('square', 'rgba(127, 191, 127)')

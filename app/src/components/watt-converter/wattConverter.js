@@ -158,9 +158,10 @@ customElements.define('watt-converter',
       this.propaneKilowattBtn = this.shadowRoot.querySelector('#calculate-propane')
       
       this.wattToKilowattBtn.addEventListener('click', (event) => {
-        const watt = Number(this.formWattKilowatt.querySelector('input').value)
         event.preventDefault()
+        const watt = Number(this.formWattKilowatt.querySelector('input').value)
         const wattToKilowatt = this.#converterController.convertWattToKilowatt(watt)
+        
         this.printKilowattToUserView(wattToKilowatt)
       })
 
@@ -168,6 +169,7 @@ customElements.define('watt-converter',
         event.preventDefault()
         const kilowatt = Number(this.formKilowattMegawatt.querySelector('input').value)
         const convertedKilowatt = this.#converterController.convertKilowattToMegawatt(kilowatt)
+        
         this.printMegawattToUserView(convertedKilowatt)
       })
 
@@ -177,6 +179,7 @@ customElements.define('watt-converter',
         const penniesPerKwh = Number(this.formCalculatePerDay.querySelector('input[id="calculate-device-pennies"]').value)
         const hoursPerDay = Number(this.formCalculatePerDay.querySelector('input[id="calculate-device-hours"]').value)
         const deviceCostPerDay = this.#converterController.calculateDeviceCostPerDay(deviceWatt, penniesPerKwh, hoursPerDay)
+        
         this.printCostOfDeviceUserView(deviceCostPerDay)
       })
 
@@ -185,6 +188,7 @@ customElements.define('watt-converter',
         const propanePrice = Number(this.formCalculatePropanePrice.querySelector('input[id="calculate-propane-crown"]').value)
         const kilogram = Number(this.formCalculatePropanePrice.querySelector('input[id="calculate-propane-kilogram"]').value)
         const propanePriceKwh = this.#converterController.calculatePropaneKilowattPrice(propanePrice, kilogram)
+        
         this.printPropaneKwhPriceToUserView(propanePriceKwh)
       })
     }

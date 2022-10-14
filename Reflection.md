@@ -21,7 +21,7 @@ Däremot har jag fortsatta problem med förståelse kring hur jag skulle kunna b
 
 [![Zh13Hx.md.png](https://iili.io/Zh13Hx.md.png)](https://freeimage.host/i/Zh13Hx) <br>
 
-Boken lyfter även vikten av att ha så få argument som möjligt och det är en metod jag reflekterat över som tar tre argument just för att den behöver tre argument för att fungera? Hade detta kunnat lösas på annat sätt? Ekvationen kan inte lösas utan tre värden så någonstans måste dessa mötas?<br>
+Boken lyfter även vikten av att ha så få argument som möjligt och det är en metod jag reflekterat över som tar tre argument just för att den behöver tre argument för att fungera? Hade detta kunnat lösas på annat sätt? Ekvationen kan inte lösas utan tre värden så någonstans måste dessa mötas? Ett alternativ är att deklarera variablerna globalt men då bryter vi istället mot regeln "Variables should be declared as close to their usage as possible" som återfinns under sektionen "Variable Declarations" i kapitel 5.<br>
 
 [![ZhOdue.md.png](https://iili.io/ZhOdue.md.png)](https://freeimage.host/i/ZhOdue)
 
@@ -39,8 +39,12 @@ Det jag tar med mig från kapitlet är att om jag känner att jag måste skriva 
 ---
 
 ## **Kapitel 5 - Formatting**
-Eftersom jag följer EsLint kodstandard (sånär som den delen som handlar om kommentarer) så följer jag en standard som följs av många andra programmerare, vilket bidrar till att min kod ger en ökad förståelse och tydlighet i andras ögon. Under det här året jag har lärt mig att programmera så har jag känt att jag många gånger har varit inkonsekvent i hur jag ordnar metoderna vertikalt i mina klasser. Innan starten för den här kursen så hände det att alla publika metoder låg överst och sedan följdes de åt av de privata metoderna. Efter att ha läst kapitlet och sektionerna "Vertical Ordering" och "Dependent Functions" så har jag ändrat tankesätt och ser istället min kod som en tidning som ska läsas uppifrån och ner, vilket på ett naturligt sätt bidrar till att metoder som kallar på andra metoder i samma klass återfinns i närheten av varandra, vilket bidrar till en mer lättläst kod.
-Exempel på detta 
+Eftersom jag följer EsLint kodstandard (sånär som den delen som handlar om kommentarer) så följer jag en standard som följs av många andra programmerare, vilket bidrar till att min kod ger en ökad förståelse och tydlighet i andras ögon. Under det här året jag har lärt mig att programmera så har jag känt att jag många gånger har varit inkonsekvent i hur jag ordnar metoderna vertikalt i mina klasser. Innan starten för den här kursen så hände det att alla publika metoder låg överst och sedan följdes de åt av de privata metoderna. Efter att ha läst kapitlet och sektionerna "Vertical Ordering" och "Dependent Functions" så har jag ändrat tankesätt och ser istället min kod som en tidsskrift som ska läsas uppifrån och ner, vilket på ett naturligt sätt bidrar till att metoder som kallar på andra metoder i samma klass återfinns i närheten av varandra.
+Exempel på detta (converterHandler.js):<br><br>
+[![ZNCW9n.md.png](https://iili.io/ZNCW9n.md.png)](https://freeimage.host/i/ZNCW9n)<br>
+
+
+
 
 ## **Kapitel 6 - Object and Data Structures**
 
