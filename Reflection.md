@@ -43,10 +43,15 @@ Eftersom jag följer EsLint kodstandard (sånär som den delen som handlar om ko
 Exempel på detta (converterHandler.js):<br><br>
 [![ZNCW9n.md.png](https://iili.io/ZNCW9n.md.png)](https://freeimage.host/i/ZNCW9n)<br>
 
-
+En annan sak, som jag nämner i korthet under Kapitel 3, är "Variable Declarations" som anger att variabler ska deklareras i närheten av dess användningsområde. Detta ihop med att metoder enligt sektionen Triads under kapitel 3 ska ta emot inga eller få argument som möjligt gör att jag fastnar lite i ett moment 22: jag ska helst inte skicka argument men jag heller inte deklarera variabler långt ifrån dess användning. Här ett exempel på två variabler som jag deklarerat i konstruktorn för att kunna nå dom globalt(dessa hade i annat fall blivit argument, vad är rätt eller fel?):<br><br>
+Återfinns i filen chart.js<br>
+[![ZN0ob4.png](https://iili.io/ZN0ob4.png)](https://freeimage.host/sv)<br>
 
 
 ## **Kapitel 6 - Object and Data Structures**
+"Talk to friends, not to Strangers" är ett citat som mer eller mindre sammanfattar hela kapitlet på ett bra sätt. Det ska erkännas att det här kapitlet var inte det lättaaste att förstå sig på och jag fick se om vissa delar av din föreläsning för att försöka få grepp om framförallt Law Of Demeter, dock känner jag mig ändå en smula osäker. Speciellt när det kommer till Train Wrecks. Jag har tittat igenom min kod och försökt 
+
+an object talk with his friends. Lättare att koden bryts. Degreses coupling.
 
 ## **Kapitel 7 - Error handling**
 
