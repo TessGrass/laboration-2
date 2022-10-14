@@ -2,6 +2,7 @@ import { ConverterHandler } from '../../../../energy-price-module/src/converterH
 
 export class ConverterController {
   #converterHandler
+  
   constructor () {
     this.#converterHandler = new ConverterHandler()
   }

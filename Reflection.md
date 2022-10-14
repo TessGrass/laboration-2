@@ -39,23 +39,45 @@ Det jag tar med mig från kapitlet är att om jag känner att jag måste skriva 
 ---
 
 ## **Kapitel 5 - Formatting**
-Eftersom jag följer EsLint kodstandard (sånär som den delen som handlar om kommentarer) så följer jag en standard som följs av många andra programmerare, vilket bidrar till att min kod ger en ökad förståelse och tydlighet i andras ögon. Under det här året jag har lärt mig att programmera så har jag känt att jag många gånger har varit inkonsekvent i hur jag ordnar metoderna vertikalt i mina klasser. Innan starten för den här kursen så hände det att alla publika metoder låg överst och sedan följdes de åt av de privata metoderna. Efter att ha läst kapitlet och sektionerna "Vertical Ordering" och "Dependent Functions" så har jag ändrat tankesätt och ser istället min kod som en tidsskrift som ska läsas uppifrån och ner, vilket på ett naturligt sätt bidrar till att metoder som kallar på andra metoder i samma klass återfinns i närheten av varandra.
-Exempel på detta (converterHandler.js):<br><br>
+Eftersom jag följer EsLint kodstandard (sånär som den delen som handlar om kommentarer) så följer jag en standard som följs av många andra programmerare, vilket bidrar till att min kod ger en ökad förståelse och tydlighet i andras ögon. Under det här året jag har lärt mig att programmera så har jag känt att jag många gånger har varit inkonsekvent i hur jag ordnar metoderna vertikalt i mina klasser. Innan starten för den här kursen så hände det att alla publika metoder låg överst och sedan följdes de åt av de privata metoderna. Efter att ha läst kapitlet och sektionerna "Vertical Ordering" och "Dependent Functions" så har jag ändrat tankesätt och ser istället min kod som en tidsskrift som ska läsas uppifrån och ner, vilket på ett naturligt sätt bidrar till att metoder som kallar på andra metoder i samma klass återfinns i närheten av varandra. Exempel:<br><br>
+
+Finns i converterHandler.js:<br>
 [![ZNCW9n.md.png](https://iili.io/ZNCW9n.md.png)](https://freeimage.host/i/ZNCW9n)<br>
 
 En annan sak, som jag nämner i korthet under Kapitel 3, är "Variable Declarations" som anger att variabler ska deklareras i närheten av dess användningsområde. Detta ihop med att metoder enligt sektionen Triads under kapitel 3 ska ta emot inga eller få argument som möjligt gör att jag fastnar lite i ett moment 22: jag ska helst inte skicka argument men jag heller inte deklarera variabler långt ifrån dess användning. Här ett exempel på två variabler som jag deklarerat i konstruktorn för att kunna nå dom globalt(dessa hade i annat fall blivit argument, vad är rätt eller fel?):<br><br>
-Återfinns i filen chart.js<br>
+Finns i chart.js<br>
 [![ZN0ob4.png](https://iili.io/ZN0ob4.png)](https://freeimage.host/sv)<br>
 
+---
 
 ## **Kapitel 6 - Object and Data Structures**
-"Talk to friends, not to Strangers" är ett citat som mer eller mindre sammanfattar hela kapitlet på ett bra sätt. Det ska erkännas att det här kapitlet var inte det lättaaste att förstå sig på och jag fick se om vissa delar av din föreläsning för att försöka få grepp om framförallt Law Of Demeter, dock känner jag mig ändå en smula osäker. Speciellt när det kommer till Train Wrecks. Jag har tittat igenom min kod och försökt 
+"Talk to friends, not to Strangers" är ett citat som mer eller mindre sammanfattar hela kapitlet på ett bra sätt. Det ska erkännas att det här kapitlet var inte det lättaste att förstå sig på och jag fick se vissa delar av din föreläsning flera gånger för att försöka få grepp om framförallt Law Of Demeter som i stora drag säger att varje del av systemet ska veta så lite som möjligt om resten av systemet, dvs metoder ska bara känna till och kalla på metoder i sin absoluta närhet (därav citatet). Men det ska erkännas att jag fortfarande känner mig en smula osäker, bland annat på det som kallas för Train Wrecks. Jag har tittat igenom min kod och försökt identifiera några eventuella Train Wrecks men jag kan inte se att jag har några? Skulle du ändå upptäcka en eller flera så vore det toppen med feedback!
 
-an object talk with his friends. Lättare att koden bryts. Degreses coupling.
+---
 
 ## **Kapitel 7 - Error handling**
+Bland det första jag läser i kapitlet är att man ska skriva try / catch block först vilket faktiskt är helt tvärtemot vad jag hittills har gjort. Try / catch har blivit något som jag alltid har implementerat i slutskedet av mina projekt och så här i efterhand så har jag egentligen ingen direkt orsak till varför utan det har mest "blivit så". Nu däremot slås jag av tanken att en implementering av try/catch block tidigt i projekten även bidrar till att hitta eventuella buggar eller annan implementation som min testning av olika skäl inte upptäcker? Det är en reflektion att ta med sig!
+Kapitlet nämner också, under sektionen "Provide Context with Exceptions" så lyfts vikten av att tillföra kontext i undantagen som kastas, att det är viktigt att kunna berätta VART felet och skett och inte bara VAD som har gått fel. Detta fick mig att ändra min felhantering enligt bilderna nedan:<br><br>
+Finns i validateInputHandler.js:<br>
+[![ZOV7Tu.md.png](https://iili.io/ZOV7Tu.md.png)](https://freeimage.host/i/ZOV7Tu)<br>
+[![ZOVVv1.md.png](https://iili.io/ZOVVv1.md.png)](https://freeimage.host/i/ZOVVv1)<br><br>
+
+En sak som fick mig att haja till var när jag kom till stycket "Don't Return Null". Jag ska inte påstå att jag har det som vana men jag har definitivt använt mig av det som i boken lyfts under null check (och det du tar upp i din föreläsning om Error handling) och jag ska erkänna att jag hittills inte har reflekterat särskilt mycket kring varför detta skulle kunna vara en dålig idé. Därför var det intressant att få läsa och höra om vilka konsekvenser det faktiskt innebär att förlita sig på null check samt hur man kan tänka för att undvika det i framtiden.
+
+---
 
 ## **Kapitel 8 - Boundaries**
+
+Det här var också en kapitel som varit lite svårare att reflektera kring men om jag förstår din föreläsning rätt så handlar det om att hur vi konstruerar våra moduler och hur vi ser till att inte bli för beroende av andras kod (via till exempel npm paket). Å ena sidan så vill jag skapa en modul som många människor ska ha nytta av men å andra sidan så vill jag inte implementera funktionalitet som i de flesta fall inte kommer att användas i särskilt stor utsträckning. I mitt fall tänker jag att de allra flesta kommer vilja använda min modul för att få fram morgondagens elpriser och de metoder som används för att bland annat kalkylera watt till kilowatt inte kommer vara huvudanledningen till att modulen används. Därför har jag valt att lägga till ett begränsat antal metoder i min modul som kalkylerar/konverterar olika värden för att inte riskera att implementera funktionalitet som i slutändan troligtvis inte skulle användas till annat än att fylla ut min kod.
+
+Du lyfter även vikten av att kapsla in funktionalitet och isolera kod och det får min att tänka på facade mönstret, dvs att vi visar upp ett förenklat gränsnitt utåt för att sedan bakom fasaden kapsla in och dölja systemets komplexitet och struktur. Jag själv tycker att jag har implementerat detta på ett tillfredställande sätt då jag ofta tänker tanken "kan det vara privat så ska det vara privat" när jag programmerar. Det betyder att de metoder som en annan utvecklare kan / ska använda sig av är de som är synliga och all annan funktionalitet är privat och därmed dold. Ett exempel på detta är i klassen SpotPriceApi som ansvarar för api anropet. Den enda vägen in i klassen är genom metoden nedan och detta ger mig en trygghet som utvecklare att veta att all övrig, och relativt känslig, kod i klassen är tryggt isolerad inom sin egen klass.<br><br>
+[![ZvT0Sj.png](https://iili.io/ZvT0Sj.png)](https://freeimage.host/sv)
+
+
+
+
+
+---
 
 ## **Kapitel 9 - Unit Test**
 
