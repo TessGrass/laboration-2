@@ -1,12 +1,12 @@
-# **Spot Price Grabber**
+# **SPOT PRICE GRABBER**
 
-This application visualize tomorrows spot-price for Swedens bidding zones and the hours and prices are displayed in a chart. The application is super easy to use and is designed with focus on clarity and accessibility.
+This application is aimed at an end user who are interested in getting tomorrow's electricity prices, hour by hour, for Swedens bidding zones. The application is super easy to use and is designed with focus on clarity and accessibility.<br> Are you an developer and interested in how it works? Go to this [Repo](https://github.com/TessGrass/laboration-1.git) where you will find the module that this application is built upon. Feel free to try it by yourself.
 #### Important! The module does not include the cost of electricity certificates, surcharges, energy tax, VAT and electricity grid costs.
 <br>
 
 ## **Motivation**
 ---
-With today's electricity market in mind, this module was created as a tool for users who want to get tomorrow's hourly electricity prices. Furthermore, the data retrieved can be used to optimize electricity consumption in homes or in an application for visualize tomorrow's hourly price. By gaining an insight into when electricity is most expensive, this can help redirect consumption to hours when the price is lower and thus help lower electricity costs for people in their homes.
+With today's electricity market in mind, this application was created as a tool for users who want to get tomorrow's hourly electricity prices. Furthermore, the data retrieved can be used to optimize electricity consumption in homes or in an application for visualize tomorrow's hourly price. By gaining an insight into when electricity is most expensive, this can help redirect consumption to hours when the price is lower and thus help lower electricity costs for people in their homes.
 <br><br>
 
 ## **Usage**
@@ -18,7 +18,7 @@ You can also choose to sort out which hours it is more advantageous to use propa
 [![ZaVjwJ.md.png](https://iili.io/ZaVjwJ.md.png)](https://freeimage.host/i/ZaVjwJ)
 
 You can also use the calculator to get different values:<br>
-[![ZaXL2S.md.png](https://iili.io/ZaXL2S.md.png)](https://freeimage.host/i/ZaXL2S)
+[![ZX0edx.md.png](https://iili.io/ZX0edx.md.png)](https://freeimage.host/i/ZX0edx)
 <br><br>
 
 ## **Code Style**
