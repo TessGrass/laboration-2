@@ -4,13 +4,7 @@ This application is aimed at an end user who are interested in getting tomorrow'
 #### Important! The module does not include the cost of electricity certificates, surcharges, energy tax, VAT and electricity grid costs.
 <br>
 
-## **Motivation**
----
-With today's electricity market in mind, this application was created as a tool for users who want to get tomorrow's hourly electricity prices. Furthermore, the data retrieved can be used to optimize electricity consumption in homes or in an application for visualize tomorrow's hourly price. By gaining an insight into when electricity is most expensive, this can help redirect consumption to hours when the price is lower and thus help lower electricity costs for people in their homes.
-<br><br>
-
 ## **Usage**
----
 When you start the application you can choose one of four bidding zone and tomorrows prices will be displayed in a chart, as shown:<br>
 [![ZaE8F9.md.png](https://iili.io/ZaE8F9.md.png)](https://freeimage.host/i/ZaE8F9)<br><br>
 
@@ -22,14 +16,13 @@ You can also use the calculator to get different values:<br>
 <br><br>
 
 ## **Code Style**
----
 EsLint<br>
 Javascript Standard<br>
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 <br><br>
 
 ## **Dependencies**
----
+
 ```
 chart.js,
 chartjs-plugin-datalabels
@@ -40,9 +33,9 @@ chartjs-plugin-datalabels
 <br><br>
 
 ## **Installation**
----
-You can go to the repository by clicking the link [Link to Repo](https://github.com/TessGrass/laboration-2.git)
-or you can clone the repository from Github by running the following command in the terminal.<br>The repo will be cloned down to which the terminal path points to:
+
+You can go to the repository by clicking this link [Link to Repo](https://github.com/TessGrass/laboration-2.git)
+or you can clone the repository directly by running the following command in the terminal.<br>The repo will be cloned down to which the terminal path points to:
 
  ```
  git clone https://github.com/TessGrass/laboration-2.git
@@ -57,7 +50,6 @@ npm install
 <br><br>
 
 ## **Overview**
----
 
 ```
 Laboration 2  
@@ -107,11 +99,15 @@ Laboration 2
 
 ```
 
+## **Motivation**
+With today's electricity market in mind, this application was created as a tool for users who want to get tomorrow's hourly electricity prices. Furthermore, the data retrieved can be used to optimize electricity consumption in homes or in an application for visualize tomorrow's hourly price. By gaining an insight into when electricity is most expensive, this can help redirect consumption to hours when the price is lower and thus help lower electricity costs for people in their homes.
+<br><br>
+
 ## Contributing
 Feel free to contribute! For major changes, please open an issue first to discuss what you would like to change.
 
 ## 1DV610-mjukvarukvalité-L2
-This is assignment for the course 1DV610 att Linneus University.
+This is assignment for the course 1DV610 at Linneus University.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
