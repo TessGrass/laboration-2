@@ -18,8 +18,8 @@ Modulen som ingår i laboration 1 har testats genom manuella tester vilket redov
 | A user can calculate consumption cost for a device | ✅ | TF 7 | [Krav 8](https://github.com/TessGrass/laboration-2/issues/8)  |
 | The application should be user friendly | ✅ | TF 8 | [Krav 9](https://github.com/TessGrass/laboration-2/issues/10)  |
  
----
- 
+<br>
+
 # Testfall
 Öppna upp ett test för att ta del av utfallet
 
@@ -136,7 +136,7 @@ Ej implementerat i denna version. Test utgår.
 <br>
 <br>
 1) The application should prevent user from input the wrong type of value.<br>
-Tanken med applikationen är att det för en slutanvändare ska vara enkelt att göra rätt men svårt att göra fel. Applikationen stänger därför möjlighten att mata in någon annan datatyp än Number i fälten<br> Test har genomförts på samtliga fält att det inte går att mata in bokstäver och kontroll i koden visar följande:
+Tanken med applikationen är att det för en slutanvändare ska vara enkelt att göra rätt men svårt att göra fel. Applikationen stänger därför möjlighten att mata in någon annan datatyp än Number i fälten<br> Test har genomförts på samtliga fält att det inte går att mata in bokstäver och kontroll i koden visar att fälten enbart accepterar "number" som datatyp:
 <br>
 <br>
 
@@ -164,7 +164,7 @@ Tanken med applikationen är att det för en slutanvändare ska vara enkelt att 
 
 [![tnDQP2.md.png](https://iili.io/tnDQP2.md.png)](https://freeimage.host/i/tnDQP2)<br>
 <br>
-4) The application table should be designed with consideration for users with possible color blindness.<br>
+4) The application table should be designed with consideration for users with color blindness.<br>
 Grafen består av både färger och mönster enligt de råd som finns tillgängliga här [We Are Colorblind](https://wearecolorblind.com/)<br> Utfall:<br>
 
 [![tBQZGt.md.png](https://iili.io/tBQZGt.md.png)](https://freeimage.host/i/tBQZGt)<br>

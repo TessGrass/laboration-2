@@ -1,10 +1,10 @@
 # **SPOT PRICE GRABBER**
 
-This application is aimed at an end user who are interested in getting tomorrow's electricity prices, hour by hour, for Swedens bidding zones. The application is super easy to use and is designed with focus on clarity and accessibility.<br> Are you an developer and interested in how it works? Go to this [Repo](https://github.com/TessGrass/laboration-1.git) where you will find the module that this application is built upon. Feel free to try it yourself. <br>Important! The module does not include the cost of electricity certificates, surcharges, energy tax, VAT and electricity grid costs.
+This application is aimed at an end user who are interested in getting tomorrow's electricity prices, hour by hour, for Swedens bidding zones. The application is super easy to use and is designed with focus on clarity and accessibility.<br> Are you an developer and interested in how it works? Go to this [Developer Guide](./Developer.md) where you will find more in-depth information about the application.<br>Important! The module does not include the cost of electricity certificates, surcharges, energy tax, VAT and electricity grid costs.
 <br>
 
 ## **Usage**
-When you start the application you can choose one of four bidding zone and tomorrows prices will be displayed in a chart, as shown below.<br>
+When you start the application you can choose one of four bidding zone and tomorrows prices will be displayed in a chart, as shown below:<br>
 [![ZaE8F9.md.png](https://iili.io/ZaE8F9.md.png)](https://freeimage.host/i/ZaE8F9)<br><br>
 
 You can choose to sort out which hours it is more advantageous to use propane according to different kilowatt price:<br>
@@ -93,10 +93,6 @@ Laboration 2
 │───Reflektion.md
 
 ```
-## **Motivation**
-With today's electricity market in mind, this application was created as a tool for users who want to get tomorrow's hourly electricity prices. Furthermore, the data retrieved can be used to optimize electricity consumption in homes or in an application for visualize tomorrow's hourly price. By gaining an insight into when electricity is most expensive, this can help redirect consumption to hours when the price is lower and thus help lower electricity costs for people in their homes.
-<br>
-
 ## **Contributing**
 Feel free to contribute! For major changes, please open an issue first to discuss what you would like to change.
 
