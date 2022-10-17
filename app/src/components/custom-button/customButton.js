@@ -20,7 +20,7 @@ template.innerHTML = `
 
 
 </style>
-    <button type="number" id="custom-buttom" class="submit"><slot /></button>
+    <button type="submit" id="custom-buttom" class="submit"><slot /></button>
   `
 customElements.define('custom-button',
   /**

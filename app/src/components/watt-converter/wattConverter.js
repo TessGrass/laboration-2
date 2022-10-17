@@ -92,15 +92,15 @@ input {
 <div class="form-wrapper">
   <form id="form-watt-kilo">
     <p class="subtitle">CALCULATE WATT TO KILOWATT</p>
-    <input type="number" class="watt-kilo" name="watt-input" placeholder="Enter watt" required>
-    <custom-button type="number" id="watt-kilo" class="submit">calculate</custom-button>
+    <input type="number" class="watt-kilo" name="watt-input" placeholder="Enter watt" required />
+    <custom-button id="watt-kilo" class="submit">calculate</custom-button>
   </form>
   <p class="output-text" id="output-text-watt-kilo"><p>
 </div>
 <div class="form-wrapper">
     <form id="form-kilo-mega">
     <p class="subtitle">CALCULATE KILOWATT TO MEGAWATT</p>
-    <input type="number" class="kilo-mega" placeholder="Enter kilowatt" required>
+    <input type="number" class="kilo-mega" placeholder="Enter kilowatt" required/>
     <custom-button type="number" id="kilo-mega" class="submit">calculate</custom-button>
   </form>
   <p class="output-text" id="output-text-kilo-watt"><p>
