@@ -55,24 +55,6 @@ Laboration 2
 └───app/
 │   │
 │   └───src/
-│       │
-│       │──components/
-│       │         │
-│       │         │───chart/
-│       │         │     │───chart.js
-│       │         │     └───index.js
-│       │         │
-│       │         │───custom-buttom/
-│       │         │     │───customButton.js
-│       │         │     └───index.js
-│       │         │
-│       │         │───desktop-main/
-│       │         │     │───desktopMain.js
-│       │         │     └───index.js
-│       │         │
-│       │         │───watt-converter/
-│       │         │     │───wattConverter.js
-│       │         │     └──index.js
 │       │ 
 │       │──controller/
 │       │         │
@@ -81,14 +63,33 @@ Laboration 2
 │       │         │
 │       │         └───converterController/
 │       │               └───converterController.js
-│       │         
+│       │
+│       │──view/
+│       │    └───components/
+│       │           │
+│       │           │───chart/
+│       │           │     │───chart.js
+│       │           │     └───index.js
+│       │           │
+│       │           │───custom-buttom/
+│       │           │     │───customButton.js
+│       │           │     └───index.js
+│       │           │
+│       │           │───desktop-main/
+│       │           │     │───desktopMain.js
+│       │           │     └───index.js
+│       │           │
+│       │           │───watt-converter/
+│       │           │     │───wattConverter.js
+│       │           │     └──index.js
+│       │      
 │       │──css/
 │       │  └───styles.css
 │       │ 
 │       │──index.html
 │       └──index.js
 │
-│───Module should be placed at this level
+│───Module should be placed at this level for the application to work
 │
 │───Developer.md
 │───package.json
@@ -96,6 +97,7 @@ Laboration 2
 │───README.md
 │───Reflection.md
 │───Testrapport.md
+
 ```
 ## **Contributing**
 Feel free to contribute! For major changes, please open an issue first to discuss what you would like to change.

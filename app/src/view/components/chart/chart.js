@@ -1,5 +1,5 @@
 import Chart from 'chart.js/auto'
-import { ApiController } from '../../controller/apiController/apiController'
+import { ApiController } from '../../../controller/apiController/apiController'
 
 const template = document.createElement('template')
 template.innerHTML = `

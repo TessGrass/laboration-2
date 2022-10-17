@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import './components/desktop-main/'
-import './components/chart/'
-import './components/watt-converter/'
-import './components/custom-button/'
+import './view/components/desktop-main/'
+import './view/components/chart/'
+import './view/components/watt-converter/'
+import './view/components/custom-button/'

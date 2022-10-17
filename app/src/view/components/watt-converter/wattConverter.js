@@ -1,4 +1,4 @@
-import { ConverterController } from '../../controller/converterController/converterController'
+import { ConverterController } from '../../../controller/converterController/converterController'
 
 const template = document.createElement('template')
 template.innerHTML = `
