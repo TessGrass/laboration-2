@@ -63,13 +63,9 @@ template.innerHTML = `
 </div>
   `
 customElements.define('desktop-main',
-  /**
-   * Creates a desktop component.
-   */
+
   class extends HTMLElement {
-    /**
-     * Creates a instance of the current type.
-     */
+
     constructor () {
       super()
 

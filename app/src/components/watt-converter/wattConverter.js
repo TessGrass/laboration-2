@@ -139,14 +139,10 @@ input {
 </div>
   `
 customElements.define('watt-converter',
-  /**
-   * Creates a desktop component.
-   */
+
   class extends HTMLElement {
     #converterController
-    /**
-     * Creates a instance of the current type.
-     */
+
     constructor () {
       super()
 
@@ -170,18 +166,18 @@ customElements.define('watt-converter',
       this.kiloWattToMegaWattBtn = this.shadowRoot.querySelector('#kilo-mega')
       this.deviceConsumptionBtn = this.shadowRoot.querySelector('#calculate')
       this.propaneKilowattBtn = this.shadowRoot.querySelector('#calculate-propane')
-      
+
       this.wattToKilowattBtn.addEventListener('click', (event) => {
         event.preventDefault()
         const watt = Number(this.formWattKilowatt.querySelector('input').value)
         const kilowatt = this.#converterController.convertWattToKilowatt(watt)
-        const valueInAllFields = this.isAllFieldsFilledIn(this.formWattKilowatt)
+        const valueInAllFields = this.#isAllFieldsFilledIn(this.formWattKilowatt)
 
         if (valueInAllFields) {
-          this.removePrintInUserView(this.missingValueWattKilowattField)
-          this.printKilowattToUserView(kilowatt)
+          this.#removePrintInUserView(this.missingValueWattKilowattField)
+          this.#printKilowattToUserView(kilowatt)
         } else {
-          this.printRequiredFieldAreMissingValue(this.missingValueWattKilowattField)
+          this.#printRequiredFieldAreMissingValue(this.missingValueWattKilowattField)
         }
       })
 
@@ -189,29 +185,29 @@ customElements.define('watt-converter',
         event.preventDefault()
         const kilowatt = Number(this.formKilowattMegawatt.querySelector('input').value)
         const megawatt = this.#converterController.convertKilowattToMegawatt(kilowatt)
-        const valueInAllFields = this.isAllFieldsFilledIn(this.formKilowattMegawatt)
-        
+        const valueInAllFields = this.#isAllFieldsFilledIn(this.formKilowattMegawatt)
+
         if (valueInAllFields) {
-          this.removePrintInUserView(this.missingValueKilowattToMegawattField)
-          this.printMegawattToUserView(megawatt)
+          this.#removePrintInUserView(this.missingValueKilowattToMegawattField)
+          this.#printMegawattToUserView(megawatt)
         } else {
-          this.printRequiredFieldAreMissingValue(this.missingValueKilowattToMegawattField)
+          this.#printRequiredFieldAreMissingValue(this.missingValueKilowattToMegawattField)
         }
       })
 
       this.deviceConsumptionBtn.addEventListener('click', (event) => {
         event.preventDefault()
-        const valueInAllFields = this.isAllFieldsFilledIn(this.formCalculatePerDay)
-       
+        const valueInAllFields = this.#isAllFieldsFilledIn(this.formCalculatePerDay)
+
         if (valueInAllFields) {
-          this.removePrintInUserView(this.missingValueConsumptionField)
+          this.#removePrintInUserView(this.missingValueConsumptionField)
           const deviceWatt = Number(this.formCalculatePerDay.querySelector('input[id="calculate-device-watt"]').value)
           const penniesPerKwh = Number(this.formCalculatePerDay.querySelector('input[id="calculate-device-pennies"]').value)
           const hoursPerDay = Number(this.formCalculatePerDay.querySelector('input[id="calculate-device-hours"]').value)
           const deviceCostPerDay = this.#converterController.calculateDeviceCostPerDay(deviceWatt, penniesPerKwh, hoursPerDay)
-          this.printCostOfDeviceUserView(deviceCostPerDay)
+          this.#printCostOfDeviceUserView(deviceCostPerDay)
         } else {
-          this.printRequiredFieldAreMissingValue(this.missingValueConsumptionField)
+          this.#printRequiredFieldAreMissingValue(this.missingValueConsumptionField)
         }
       })
 
@@ -220,23 +216,22 @@ customElements.define('watt-converter',
         const propanePrice = Number(this.formCalculatePropanePrice.querySelector('input[id="calculate-propane-crown"]').value)
         const kilogram = Number(this.formCalculatePropanePrice.querySelector('input[id="calculate-propane-kilogram"]').value)
         const propanePriceKwh = this.#converterController.calculatePropaneKilowattPrice(propanePrice, kilogram)
-        const valueInAllFields = this.isAllFieldsFilledIn(this.formCalculatePropanePrice)
-        
-        if (valueInAllFields) {
-          this.removePrintInUserView(this.missingValuePropaneField)
-          this.printPropaneKwhPriceToUserView(propanePriceKwh)
-        } else {
-          this.printRequiredFieldAreMissingValue(this.missingValuePropaneField)
-        }
+        const valueInAllFields = this.#isAllFieldsFilledIn(this.formCalculatePropanePrice)
 
+        if (valueInAllFields) {
+          this.#removePrintInUserView(this.missingValuePropaneField)
+          this.#printPropaneKwhPriceToUserView(propanePriceKwh)
+        } else {
+          this.#printRequiredFieldAreMissingValue(this.missingValuePropaneField)
+        }
       })
     }
 
-    isAllFieldsFilledIn(field){
+    #isAllFieldsFilledIn (field) {
       let valueInAllFields = true
 
       for (let index = 0; index < field.length; index++) {
-        if (field[index].value === "") {
+        if (field[index].value === '') {
           valueInAllFields = false
           return valueInAllFields
         }
@@ -244,27 +239,28 @@ customElements.define('watt-converter',
       return valueInAllFields
     }
 
-    printKilowattToUserView (value) {
+    #printKilowattToUserView (value) {
       this.outputTextWattKilowatt.innerText = 'The Watt in Kilowatt: ' + value
     }
 
-    printMegawattToUserView (value) {
+    #printMegawattToUserView (value) {
       this.outputTextKilowattToMegawatt.innerText = 'The Kilowatt in Megawatt: ' + value
     }
 
-    printCostOfDeviceUserView (deviceCostPerDay) {
+    #printCostOfDeviceUserView (deviceCostPerDay) {
       this.outputTextConsumption.innerText = 'The daily cost of running the device is ' + deviceCostPerDay + ' Swedish ören'
     }
 
-    printPropaneKwhPriceToUserView (propanePriceKwh) {
+    #printPropaneKwhPriceToUserView (propanePriceKwh) {
       this.outputTextPropanePrice.innerText = 'The cost of the propane is ' + propanePriceKwh + ' Swedish ören per kWh'
     }
-    printRequiredFieldAreMissingValue (textField) {
+
+    #printRequiredFieldAreMissingValue (textField) {
       textField.innerText = 'Please enter all fields '
-      textField.style.display = 'block'      
+      textField.style.display = 'block'
     }
 
-    removePrintInUserView(textField) {
+    #removePrintInUserView (textField) {
       textField.style.display = 'none'
     }
   })

@@ -22,13 +22,8 @@ template.innerHTML = `
     <button type="submit" id="custom-buttom" class="submit" ><slot /></button>
   `
 customElements.define('custom-button',
-  /**
-   * Creates a custom-button component.
-   */
+
   class extends HTMLElement {
-  /**
-   * Creates a instance of the current type.
-   */
     constructor () {
       super()
 

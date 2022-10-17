@@ -2,6 +2,7 @@ import { ElectricityRatesProvider } from '../../../../energy-price-module/src/in
 
 export class ApiController {
   #electricityRatesProvider
+  
   constructor () {
     this.#electricityRatesProvider = new ElectricityRatesProvider()
   }

@@ -1,19 +1,21 @@
 
 
 ## **Kapitel 2 - Meaningful Names**
-Det här kapitlet (ihop med Kapitel 3) är nog det kapitel jag reflekterat mest över när jag själv suttit och programmerat, kapitlet i sig är tydligt med distinkta exempel och jag fick med mig en stor del matnyttig information. Det var till exempel efter att jag läst det här kapitlet som jag fick idén att fråga min sambo om hon förstod några av de metodnamn jag hade skapat. Ett exempel på detta är följande metod som inte riktigt förklarade vad den gjorde:
+Det här kapitlet (ihop med Kapitel 3) är nog det kapitel jag reflekterat mest över när jag själv suttit och programmerat, kapitlet i sig är tydligt med distinkta exempel och jag fick med mig en stor del matnyttig information. Det var till exempel efter att jag läst det här kapitlet som jag fick idén att fråga min sambo om hon förstod några av de metodnamn jag hade skapat. Ett exempel på detta är följande metod som inte riktigt förklarade vad den gjorde:<br>
 
+Finns i APiController<br>
 FÖRE:<br>[![ZXiZ8J.png](https://iili.io/ZXiZ8J.png)](https://freeimage.host/sv)<br>
 EFTER:<br>[![ZXswtp.png](https://iili.io/ZXswtp.png)](https://freeimage.host/sv)
 
-Under sektionen "Pick one Word per Concept" så lyfter boken vikten av att vara konsekvent i sin namngivning och att inte blanda mellan till exempel get, fetch, retrieve. I mina metoder som hämtar information från api:et så har jag valt att använda mig av get, se bilderna ovan. Jag har även försökt att identifiera så kallade noise ord eller ord som inte bidrar till tydlighet, som detta exempel:
-
+Under sektionen "Pick one Word per Concept" så lyfter boken vikten av att vara konsekvent i sin namngivning och att inte blanda mellan till exempel get, fetch, retrieve. I mina metoder som hämtar information från api:et så har jag valt att använda mig av get, se bilderna ovan. Jag har även försökt att identifiera så kallade noise ord eller ord som inte bidrar till tydlighet, som detta exempel:<br><br>
+Finns i converterHandler.js<br>
 FÖRE:<br>[![Zh2JYQ.png](https://iili.io/Zh2JYQ.png)](https://freeimage.host/sv)<br>
 EFTER:<br>[![Zh2bAN.png](https://iili.io/Zh2bAN.png)](https://freeimage.host/sv)
 
 Jag märker själv att jag har en förmåga att låta mina variabelnamn bli långa, ibland kanske lite väl långa? För på samma sätt som att korta namn är svåra att förstå så gäller samma sak även åt andra hållet. Ett exempel jag hittat i min kod är följande variabel i chart.js:<br>
-<br>
+<br><br>
 
+Finns i APiController<br>
 [![Ztxaqu.png](https://iili.io/Ztxaqu.png)](https://freeimage.host/sv)
 
 Eftersom ett av Javascript nackdelar (enligt mig själv) är att det inte går att utläsa vilken datatyp som lagrats utan att låta namnet skvallra och i detta fall så gömmer det sig en boolean eftersom namnet börjar med "is". Men är detta ett namn som är i det längsta laget?
@@ -80,7 +82,7 @@ Kapitlet understryker vikten av att inte bara metoder ska vara små utan att det
 
 ## **Kapitel 11 - Systems**
 Scaling up - Kapitlet drar paralleller mellan systemutveckling och en stad som reser sig och växer fram vilket jag ser som en bra jämförelse. För på samma sätt som att alla städer har börjat med ett spadtag så börjar varje systemutveckling med en tangenttryckning. Jag kan själv känna att jag många gånger går händelserna i förväg och börjar programmera lite överallt, speciellt när jag känner mig stressad, och hittills har det inte visat sig vara en god idé. Att det är viktigt att jag förstår att "Rom inte byggdes på en dag" utan att jag ska ta en sak i taget och utföra den väl. 
-En kraftfull mekanism för att skilja konstruktion från användning är Dependency Injection som egneltigen inte är något annat än att skicka in ett beroende när det krävs istället för att initiera beroendet inuti klassen vilket bidrar till att hålla nere tajta relationer i systemet. Vi läser om det här även i parallellkursen och jag tycker återigen att det här är ett ämne som är lättare att implementera i Java än i Javascript.
+En kraftfull mekanism för att skilja konstruktion från användning är Dependency Injection som egentligen inte är något annat än att skicka in ett beroende när det krävs istället för att initiera beroendet inuti klassen vilket bidrar till att hålla nere tajta relationer i systemet. Vi läser om det här även i parallellkursen och jag tycker återigen att det här är ett ämne som är lättare att implementera i Java än i Javascript.
 
 ## **Slutord**
 ### Modulen och applikationen
@@ -90,7 +92,7 @@ Eftersom jag själv bor i villa så har elpriset det senaste året varit en en c
 Jag har verkligen uppskattat den här boken och det är en bok jag skulle kunna bläddra i även efter att kursen är avklarad. Visst, jag har läst att den har fått en del kritik för att vara utdaterad men mycket av det jag tar med mig känns ändå tidlöst, såsom namngivning, vikten av testning och tänket kring klasser och modulers uppbyggnad. 
 Kursens workshops har också varit intressanta och jag har haft många lärorika samtal med de jag har suttit med. Först kändes workshops som något som jag skulle tvingas genomlida då jag med lätthet bygger upp en ångest inför möten med okända människor men tack vare din ärlighet kring mental ohälsa så kände jag ändå en trygghet jag inte brukar känna i andra kurser.
 
-Avslutningvis så känns det som att min kunskapsryggsäck har fyllts på rejält, visst jag kommer fortfarande snubbla på saker som jag i teorin ska kunna men att man som elev ändå stannar upp och reflekterar över sin kod och vad man skulle vilja förbättra skulle jag ändå vilja påstå kan klassas som hälften vunnet.
+Avslutningvis så känns det som att min kunskapsryggsäck har fyllts på rejält under kursen, visst jag kommer fortfarande snubbla på saker som jag i teorin ska kunna och jag ser mycket i min kodning jag skulle vilja förbättra men att jag som elev ändå stannar upp och reflekterar över min kod och vad jag skulle vilja förbättra skulle jag ändå vilja klassa som hälften vunnet.
 
 
 

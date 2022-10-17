@@ -12,12 +12,12 @@ You can choose to sort out which hours it is more advantageous to use propane ac
 
 You can also use the calculator to get different values:<br>
 [![ZX0edx.md.png](https://iili.io/ZX0edx.md.png)](https://freeimage.host/i/ZX0edx)
-<br><br>
+<br>
 
 ## **Code Style**
 EsLint - [eslint.org](https://eslint.org/)<br>
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
-<br><br>
+<br>
 
 ## **Dependencies**
 
@@ -27,9 +27,9 @@ chartjs-plugin-datalabels
 vite.js
 ```
 Chart.js - A simple and flexible chart npm package [chartjs.org](https://www.chartjs.org/)<br>
-Chartjs-plugin-datalabels - adds different options to Chartjs.<br>
-Vite.js - [vite.js](https://vitejs.dev/)<br>
-<br><br>
+Chartjs-plugin-datalabels - Adds different options to Chartjs.<br>
+Vite.js - Allows developers to set up a development environment [vite.js](https://vitejs.dev/)<br>
+<br>
 
 ## **Installation**
 First, make sure that you have downloaded and installed Node.js and npm [nodejs.org](https://nodejs.org/en/download/)
@@ -87,6 +87,8 @@ Laboration 2
 │       │ 
 │       │──index.html
 │       └──index.js
+│
+│───Module should be placed at this level
 │
 │───Developer.md
 │───package.json
