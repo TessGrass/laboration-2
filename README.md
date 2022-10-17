@@ -1,6 +1,6 @@
 # **SPOT PRICE GRABBER**
 
-This application is aimed at an end user who are interested in getting tomorrow's electricity prices, hour by hour, for Swedens bidding zones. The application is super easy to use and is designed with focus on clarity and accessibility.<br> Are you an developer and interested in how it works? Go to this [Developer Guide](./Developer.md) where you will find more in-depth information about the application.<br>Important! The module does not include the cost of electricity certificates, surcharges, energy tax, VAT and electricity grid costs.
+This application is aimed at an end user who are interested in getting tomorrow's electricity prices, hour by hour, for Swedens bidding zones. The application is super easy to use and is designed with focus on clarity and accessibility.<br> Are you a developer and interested in how it works? Go to this [Developer Guide](./Developer.md) where you will find more in-depth information about the application.<br><br>Important! The module does not include the cost of electricity certificates, surcharges, energy tax, VAT and electricity grid costs.
 <br>
 
 ## **Usage**
@@ -24,9 +24,11 @@ EsLint - [eslint.org](https://eslint.org/)<br>
 ```
 chart.js,
 chartjs-plugin-datalabels
+vite.js
 ```
- Chart.js - A simple and flexible chart npm package [chartjs.org](https://www.chartjs.org/)<br>
- Chartjs-plugin-datalabels - adds different options to Chartjs.
+Chart.js - A simple and flexible chart npm package [chartjs.org](https://www.chartjs.org/)<br>
+Chartjs-plugin-datalabels - adds different options to Chartjs.<br>
+Vite.js - [vite.js](https://vitejs.dev/)<br>
 <br><br>
 
 ## **Installation**
@@ -84,14 +86,14 @@ Laboration 2
 │       │  └───styles.css
 │       │ 
 │       │──index.html
-│       │──index.js
-│       │──index.js
+│       └──index.js
 │
+│───Developer.md
 │───package.json
 │───package-lock.json
 │───README.md
-│───Reflektion.md
-
+│───Reflection.md
+│───Testrapport.md
 ```
 ## **Contributing**
 Feel free to contribute! For major changes, please open an issue first to discuss what you would like to change.
