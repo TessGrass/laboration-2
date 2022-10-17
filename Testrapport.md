@@ -136,22 +136,36 @@ Ej implementerat i denna version. Test utgår.
 <br>
 <br>
 1) The application should prevent user from input the wrong type of value.<br>
-Tanken med applikationen är att det för en slutanvändare ska vara enkelt att göra rätt men svårt att göra fel. Applikationen stänger därför möjlighten att mata in någon annan datatyp än Number i fälten<br> Test har genomförts på samtligen fält att det inte går att mata in bokstäver och kontroll i koden visar följande:
+Tanken med applikationen är att det för en slutanvändare ska vara enkelt att göra rätt men svårt att göra fel. Applikationen stänger därför möjlighten att mata in någon annan datatyp än Number i fälten<br> Test har genomförts på samtliga fält att det inte går att mata in bokstäver och kontroll i koden visar följande:
 <br>
 <br>
 
 [![tCka4V.png](https://iili.io/tCka4V.png)](https://freeimage.host/sv)
 <br>
 <br>
-2) The application should prompt the user to enter all missing fields<br>Utfall:
+2) The application should prompt the user to enter all missing fields.<br>Utfall:
 <br>
+
+[![txojTJ.png](https://iili.io/txojTJ.png)](https://freeimage.host/sv)
 <br>
+
+[![txCi9s.png](https://iili.io/txCi9s.png)](https://freeimage.host/sv)
+<br>
+
+[![txn5Vp.png](https://iili.io/txn5Vp.png)](https://freeimage.host/sv)
+<br>
+
+[![txnrWQ.md.png](https://iili.io/txnrWQ.md.png)](https://freeimage.host/i/txnrWQ)
+<br>
+
+[![txnMbf.md.png](https://iili.io/txnMbf.md.png)](https://freeimage.host/i/txnMbf)
+<br><br>
 3) The application should inform the user that the hourly does NOT include the cost of electricity certificates, surcharges, energy tax, VAT and electricity grid costs.<br>Utfall:
 
 [![tnDQP2.md.png](https://iili.io/tnDQP2.md.png)](https://freeimage.host/i/tnDQP2)<br>
 <br>
 4) The application table should be designed with consideration for users with possible color blindness.<br>
-Grafen består av både färger och mönster enligt råd som finns att finna här [We Are Colorblind](https://wearecolorblind.com/)<br> Utfall:<br>
+Grafen består av både färger och mönster enligt de råd som finns tillgängliga här [We Are Colorblind](https://wearecolorblind.com/)<br> Utfall:<br>
 
 [![tBQZGt.md.png](https://iili.io/tBQZGt.md.png)](https://freeimage.host/i/tBQZGt)<br>
 <br>

@@ -18,9 +18,8 @@ template.innerHTML = `
   background-color: rgba(255, 123, 150);
 }
 
-
 </style>
-    <button type="submit" id="custom-buttom" class="submit"><slot /></button>
+    <button type="submit" id="custom-buttom" class="submit" ><slot /></button>
   `
 customElements.define('custom-button',
   /**

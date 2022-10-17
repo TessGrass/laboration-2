@@ -46,19 +46,6 @@ template.innerHTML = `
   margin-bottom: 15px;
  }
 
- .footer-wrapper {
-  display: flex;
- }
-
- .footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 99vw;
-  height: 7vh;
-  background-color: rgba(200,200,200);
-}
-
 .nav-box {
   background-color: yellow;
   width: 11vw;
@@ -73,10 +60,6 @@ template.innerHTML = `
     <p class="subtitle" id="subtitle-important">The prices does not include the cost of electricity certificates, surcharges, energy tax, VAT and electricity grid costs.</p>
     <div class="chart-wrapper"><chart-component></chart-component></div>
     <div class="converter-wrapper"><watt-converter></watt-converter></div>
-  <div class="footer-wrapper">
-    <div class="footer">
-    </div>
-   </div>
 </div>
   `
 customElements.define('desktop-main',
